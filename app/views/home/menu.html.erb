@@ -1,56 +1,106 @@
-<ul>
+<div class="container" style="text-shadow: 2px 2px 20px #333;">
 	<h1>Menu</h1>
-</ul>
+</div>
 <div class="container">
 	<div class="row">
 		<div class="col-sm-6">
+			<div class="form-inline">
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+						<% if @current_section %>
+						<%= @current_section.name %>
+						<% else %>
+						All 
+						<% end %>
+					</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<%= link_to 'All', menu_path , class: "dropdown-item" %>
+						<% @sections.each do |section| %>
+						<%= link_to section.name, menu_path(section_id: section.id) , class: "dropdown-item" %>
+						<% end %>
+					</div>
+				</div>
 
-			<center><div class="btn-group">
-				<% @sections.each do |section| %>
-				<%= link_to section.name, menu_path(section_id: section.id) , class: "btn #{params[:section_id] == section.id.to_s ? 'btn-primary' : 'btn-secondary'}" %>
-				<% end %>
+
+
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 	
+						Sort
+					</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<% if @current_section %>
+						<%= link_to 'Name', menu_path(:sort_by => 'name', section_id: @current_section.id ), class: "dropdown-item" %>
+						<%= link_to 'Highest Price', menu_path(:sort_by => "Hprice", section_id: @current_section.id) , class: "dropdown-item" %>
+						<%= link_to 'Lowest Price', menu_path(:sort_by => "Lprice", section_id: @current_section.id) , class: "dropdown-item" %>
+						
+					<% else %>
+						<%= link_to 'Name', menu_path(:sort_by => 'name'), class: "dropdown-item" %>
+						<%= link_to 'Highest Price', menu_path(:sort_by => "Hprice") , class: "dropdown-item" %>
+						<%= link_to 'Lowest Price', menu_path(:sort_by => "Lprice") , class: "dropdown-item" %>
+						<% end %>
+					</div>
+				</div>
+
+
+
+			
+
+
+
+
+
+
 			</div>
-		</center>
 
-		<% if @current_section %> 
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Price</th>
-					<th>Order</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% @current_section.food_items.each do |item| %>
 
-				<tr>
-					<td> <%= link_to item.name, menu_path(id: item.id, section_id: @current_section.id), class: "text #{params[:id] == item.id.to_s ? 'text-primary' : 'text-info'}" %>	 </td>     		
-					<td><%= number_to_currency item.price %></td>
-					<td><%= link_to "Add to order", new_food_item_order_path(item) , class: 'text-success' %></td>
 
-				</tr>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Price</th>
+						<th>Order</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% if @current_section %> 
+					<% @Section_food_item.each do |item| %>
+					<tr>
+						<td> <%= link_to item.name, menu_path(section_id: @current_section.id, food_id: item.id), class: "text #{params[:id] == item.id.to_s ? 'text-primary' : 'text-info'}" %>	 </td>     		
+						<td><%= number_to_currency item.price %></td>
+						<td><%= link_to "Add to order", new_food_item_order_path(item) , class: 'text-success' %></td>
+					</tr>
+					<% end %>
+					<% else %>
+					<% @food_items.each do |item| %>
+					<tr>
+						<td> <%= link_to item.name, menu_path(food_id: item.id), class: "text #{params[:food_id] == item.id.to_s ? 'text-primary' : 'text-info'}" %>	 </td>     		
+						<td><%= number_to_currency item.price %></td>
+						<td><%= link_to "Add to order", new_food_item_order_path(item) , class: 'text-success' %></td>
+					</tr>
+					<% end %>
+					<% end %>
+					
+				</tbody>
+			</table>
 
-				<% end %>
-			</tbody>
-		</table>
-		<% else %>
-		<div class="alert alert-info">Please select a section</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="card" style="border: 0px;">	
+				<% if @item %>
+				<img class="card-img-top" style='width: 400px'> <%= image_tag @item.image_url_or_default, :size => "524x400"  %>
+				<div class="card-block" >
+					<h4 class="card-title">Description</h4>
+					<td><%= @item.description %></td>
+					<% else %>
+					<img class="card-img-top" src="http://nguoilamseo.com/wp-content/plugins/websieure-chiase/images/default.jpg">
+					<% end %>
 
-		<% end %>
-	</div>
-	<div class="col-sm-6">
-		<div class="card">
-			<% if @item %>
-			<img class="card-img-top" style='width: 400px'> <%= image_tag @item.image_url_or_default, :size => "524x400"  %>
-			<div class="card-block" >
-				<h4 class="card-title">Description</h4>
-				<td><%= @item.description %></td>
-				<% end %>
-
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-</div>
+
+
 

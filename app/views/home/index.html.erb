@@ -1,15 +1,18 @@
 
 <body background="http://www.wallpapers4u.org/wp-content/uploads/restaurant_table_interior_modern_style_39288_1920x1080.jpg">
 
-<div class="jumbotron" style= "margin-top: 100px; background: rgba(0,0,0,0.5);  " >
-  <center><h1 class="display-3" style=" color: #fff; " >Wecome To My Restaurant</h1></center>
-  <center><p class="lead" style=" color: #fff;"><STRONG> My Restaurant</STRONG><em> is the best restaurant in Ho Chi Minh City</em></p></center>
+<div class="jumbotron" style= "margin-top: 100px; background: rgba(0,0,0,0.4);  " >
+  <center><h1 class="display-3" style=" color: #fff; text-shadow: 2px 2px 20px #333; " >Wecome To My Restaurant</h1></center>
+  <center><p class="lead" style=" color: #fff; text-shadow: 2px 2px 20px #333;"><STRONG> My Restaurant</STRONG><em> is the best restaurant in Ho Chi Minh City</em></p></center>
   <hr class="my-4">
   <center>
-  <p class="lead">
-    <%= link_to "Menu", menu_path, class:'btn btn-primary' , :style => "width: 150px;" %>
-	<%= link_to "Contact US", contact_us_path, class:'btn btn-primary', :style => "width: 150px;" %>
-  </p>
+  <div class="lead">
+    <%= link_to "Menu", menu_path, class:'btn btn-secondary' , :style => "width: 150px;" %>
+	<%= link_to "Contact US", contact_us_path, class:'btn btn-secondary', :style => "width: 150px;" %>
+  </div>
+  	
+  	<i style=" color: #fff;">Open: 7 am - 23 pm </i>
+  
   </center>
 </div>
 </body>
