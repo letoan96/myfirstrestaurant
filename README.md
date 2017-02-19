@@ -52,7 +52,7 @@ The following **additional** features are implemented:
 
 The following **known issues**:
 
-* When I click in an item to see details. the page reloads and not sorted anymore.
+* When I click on an item to see details. the page reloads and not sorted anymore.
 
 
 ## Video Walkthrough
