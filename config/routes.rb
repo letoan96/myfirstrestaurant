@@ -5,6 +5,8 @@ resources :food_items do
   resources :home
   get 'contact_us' => 'home#contact_us'
   get 'menu' => 'home#menu'
+  get 'checkout' => 'orders#checkout'
+  get 'success' => 'orders#success'
 
  
   

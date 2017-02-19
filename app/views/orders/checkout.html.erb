@@ -1,0 +1,53 @@
+<div class="container" style="text-shadow: 2px 2px 20px #333;">
+<h1>Your Cart</h1>
+</div>
+<div class="container">
+<div class = "row">
+	<div class="col-sm-6">
+		<div class="card card-block">
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Price</th>
+						<th>Quantity</th>
+					</tr>
+				</thead>
+				<tbody>			
+					<% @orders.each do |item| %>
+					<tr>
+						<td><%= item.food_item.name %></td>     		
+						<td><%= item.food_item.price %></td>
+						<td><%= item.quantiy %></td>
+					</tr>
+					<% end %>			
+				</tbody>
+			</table>
+			<th> Total:  </th>
+			<td><%= @sum %> VND - (shipping included) </td>
+		</div>
+	</div>
+
+
+
+	<div class="col-sm-6">
+		<center>
+		<div class="card card-block">
+			<form>
+			<label for="checkout">Your name</label>
+    		<input type="email" class="form-control" id="checkout" aria-describedby="emailHelp" placeholder="Your name">
+    		<label for="checkout">Your address</label>
+    		<input type="email" class="form-control" id="checkout" aria-describedby="emailHelp" placeholder="Your address">
+    		<label for="checkout">Your phone number</label>
+    		<input type="email" class="form-control" id="checkout" aria-describedby="emailHelp" placeholder="Your phone number">
+    		<ul>
+    		<%= link_to "Done", success_path(:true => 'true'), class:'btn btn-primary' , :style => "width: 150px;" %>
+    		</ul>
+			</form>
+			</div>
+		</center>
+	</div>
+</div>
+</div>
+
